@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <title>WanderMap</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="hero">
+        <div class="top">
+          <div class="logo">WanderMap</div>
+          <div class="login"><a href="/"><button><h6>Login</h6></button></a></div>
+        </div>
+        <img data-scroll data-scroll-speed="-1.8" src="../static/Images/background.jpg" alt="background" />
+        <div class="text">
+          <h3>Your <span>Adventure</span><br />Awaits</h3>
+          <h5 class="line1">
+            Pin your dream destinations, track your travels<br />visualize your
+            journey on the map
+          </h5>
+        </div>
+        <h5 class="line2">Join <span>WanderMap</span> and turn your travel dreams into reality</h5>
+      </div>
+      <div class="map"></div>
+      <div class="data"></div>
+      <div class="footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script>
+      const scroll = new LocomotiveScroll({
+        el: document.querySelector('.main'),
+        smooth: true
+      });
+    </script>
+    
+  </body>
+</html>

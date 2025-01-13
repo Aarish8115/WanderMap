@@ -1,0 +1,115 @@
+@import url("./font.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+}
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;scale: 1.2;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.top {
+  display: flex;
+  position: absolute;
+  top: 0;
+  padding: 1.5vw 3vw;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: blur;
+}
+.top .logo {
+  color: white;
+  font-family: "AppleGaramound";
+  font-size: 2.4vw;
+  letter-spacing: 0.8px;
+  font-weight: 100;
+}
+.top button {
+  background: black;
+  border: none;
+  mix-blend-mode: screen;
+  cursor: pointer;
+}
+.top button h6 {
+  padding: 8px 12px;
+  font-size: 1.25vw;
+  border-radius: 5px;
+  color: #000;
+  font-family: "Satoshi-Bold";
+  mix-blend-mode: screen;
+  background: white;
+}
+.hero .text {
+  position: absolute;
+  left: 0;
+  top: 25%;
+  color: white;
+  padding-left: 3vw;
+}
+.hero h3 {
+  font-family: "Satoshi-Black";
+  line-height: 90%;
+  font-size: 6vw;
+  margin-bottom: 16px;
+}
+.hero h3 span {
+  font-family: "AppleGaramound-Italic";
+  font-weight: 100;
+  font-size: 6.8vw;
+}
+
+.hero .line1 {
+  font-family: "Satoshi-Italic";
+  line-height: 22px;
+  letter-spacing: 0.8px;
+  font-size: 1.4vw;
+}
+.hero .line2 {
+  position: absolute;
+  color: white;
+  padding: 0 0 1.5vw 3vw;
+  bottom: 0;
+  left: 0;
+  font-family: "Satoshi-Regular";
+  letter-spacing: 0.6px;
+  font-size: 1.5vw;
+}
+.hero .line2 span {
+  font-family: "AppleGaramound-Italic";
+  font-size: 1.85vw;
+  font-weight: 100;
+}
+
+.map {
+  width: 100%;
+  height: 100vh;
+  /* background: rebeccapurple; */
+}
+.data {
+  width: 100%;
+  height: 100vh;
+  background: green;
+}
+.footer {
+  width: 100%;
+  height: 40vh;
+  background: black;
+}
