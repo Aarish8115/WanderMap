@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="../static/css/style.css" />
     <title>WanderMap</title>
   </head>
@@ -12,9 +19,18 @@
       <div class="hero">
         <div class="top">
           <div class="logo">WanderMap</div>
-          <div class="login"><a href="/"><button><h6>Login</h6></button></a></div>
+          <div class="login">
+            <a href="/"
+              ><button><h6>Login</h6></button></a
+            >
+          </div>
         </div>
-        <img data-scroll data-scroll-speed="-1.8" src="../static/Images/background.jpg" alt="background" />
+        <img
+          data-scroll
+          data-scroll-speed="-1.8"
+          src="../static/Images/background.jpg"
+          alt="background"
+        />
         <div class="text">
           <h3>Your <span>Adventure</span><br />Awaits</h3>
           <h5 class="line1">
@@ -22,19 +38,181 @@
             journey on the map
           </h5>
         </div>
-        <h5 class="line2">Join <span>WanderMap</span> and turn your travel dreams into reality</h5>
+        <h5 class="line2">
+          Join <span>WanderMap</span> and turn your travel dreams into reality
+        </h5>
       </div>
-      <div class="map"></div>
-      <div class="data"></div>
-      <div class="footer"></div>
+      <div class="page2">
+        <div class="data1 child">
+          <img src="../static/Images/one.png" alt="" />
+          <div class="data">
+            <h2>Why <span class="AppleGaramound">WanderMap </span>?</h2>
+            <h4>Your Personal Travel Companion</h4>
+            <ul>
+              <li>
+                WanderMap helps you visualize your travel journey like never
+                before.
+              </li>
+              <li>
+                Keep track of the places you've been and the destinations still
+                waiting to be explored.
+              </li>
+              <li>
+                Easily manage your bucket list and recall memories with just a
+                click.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="data2 child">
+          <h2>
+            Discover What <span class="AppleGaramound">WanderMap</span> Can Do
+          </h2>
+          <div class="cards">
+            <div class="card1 card">
+              <div class="icon">
+                <img src="../static/Images/five.png" alt="" />
+              </div>
+              <h4>Interactive Map</h4>
+              <p>
+                Pin your desired destinations in red and mark the places you've
+                visited in blue. Visualize your journey at a glance.
+              </p>
+            </div>
+            <div class="card2 card">
+              <div class="icon">
+                <img src="../static/Images/four.png" alt="" />
+              </div>
+              <h4>Photo Memories</h4>
+              <p>
+                Upload and view your travel photos for each location. Relive
+                your adventures anytime.
+              </p>
+            </div>
+            <div class="card3 card">
+              <div class="icon">
+                <img src="../static/Images/three.png" alt="" />
+              </div>
+              <h4>Dynamic Location Search</h4>
+              <p>
+                Quickly add new locations to your list with an easy-to-use
+                search function that spans cities around the globe card
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="data3 child">
+          <div data-scroll data-scroll-speed="-1.8" class="img-container">
+            <img src="../static/Images/background2.jpg" alt="" />
+          </div>
+          <div class="data">
+            <h2>
+              Start Your <span class="AppleGaramound">Adventure</span> Today
+            </h2>
+            <h4>
+              Join thousands of travelers and turn your travel dreams into
+              reality.
+            </h4>
+            <div class="action">
+              <button><h6>Get Started</h6></button>
+            </div>
+          </div>
+        </div>
+        <div class="data4 child">
+          <div class="data">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+              <li>
+                <div class="que">
+                  How do I add a new destination to my bucket list?
+                </div>
+                <div class="ans">
+                  Use the search bar to find the city you want to add and click
+                  on the suggested location.
+                </div>
+              </li>
+              <li>
+                <div class="que">Can I upload photos from my travels?</div>
+                <div class="ans">
+                  Yes, you can upload multiple photos for each visited location
+                  to keep your memories alive.
+                </div>
+              </li>
+              <li>
+                <div class="que">How is my data stored?</div>
+                <div class="ans">
+                  Your data is securely stored and only accessible by you. We
+                  take privacy seriously.
+                </div>
+              </li>
+              <li>
+                <div class="que">Can I share my travel list with friends?</div>
+                <div class="ans">
+                  This feature is in development. Stay tuned for updates!
+                </div>
+              </li>
+            </ul>
+          </div>
+          <img src="../static/Images/two.png" alt="" />
+        </div>
+      </div>
+      <div class="footer page3">
+        <img data-scroll
+        data-scroll-speed="-1.8" src="../static/Images/footer-bg.jpg" alt="" />
+        <div class="footer-container">
+          <!-- Logo and Description -->
+          <div class="footer-section">
+            <h2 class="footer-title">WanderMap</h2>
+            <p class="footer-description">
+              Discover new destinations, plan your trips, and track your travels
+              with WanderMap. Your adventure starts here.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-section">
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#" class="footer-link">Home</a></li>
+              <li><a href="#" class="footer-link">About</a></li>
+              <li><a href="#" class="footer-link">Features</a></li>
+              <li><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="footer-section">
+            <h3 class="footer-heading">Contact Us</h3>
+            <p class="footer-text">Email: support@wandermap.com</p>
+            <p class="footer-text">Phone: +1 234 567 890</p>
+          </div>
+
+          <!-- Social Media Icons -->
+          <div class="footer-section">
+            <h3 class="footer-heading">Follow Us</h3>
+            <div class="footer-socials">
+              <a href="#" class="footer-icon"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="footer-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="footer-icon"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="footer-icon"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page4"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script>
       const scroll = new LocomotiveScroll({
-        el: document.querySelector('.main'),
-        smooth: true
+        el: document.querySelector(".main"),
+        smooth: true,
       });
     </script>
-    
   </body>
 </html>
