@@ -9,6 +9,10 @@ html,
 body {
   width: 100%;
 }
+*::selection {
+  color: #107bad;
+  background: white;
+}
 .hero {
   width: 100%;
   height: 100vh;
@@ -246,6 +250,7 @@ body {
   position: relative;
   justify-content: space-between;
   align-items: center;
+  margin-top: -10vh;
 }
 .data4 img {
   width: 22vw;
@@ -276,7 +281,7 @@ body {
 
 .footer {
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   overflow: hidden;
   text-align: center;
   position: relative;
@@ -290,46 +295,60 @@ body {
 }
 
 .footer-container {
+  color: white;
   position: absolute;
-  max-width: 1200px;
-  top: 0;
+  transform: translateY(-50%);
+  top: 50%;
   margin: 0 auto;
-  padding: 0 20px;
+
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
-
+.footer-section-one {
+  width: 40vw;
+  padding: 0 4vw;
+}
+.footer-section-one .footer-title {
+  font-size: 4vw;
+  font-family: "AppleGaramound";
+  font-weight: 100;
+}
+.footer-section-one p {
+  font-size: 1.4vw;
+  line-height: 20px;
+  font-family: "Satoshi-Variable";
+  font-weight: 600;
+}
 .footer-section {
-  flex: 1;
-  min-width: 250px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  align-items: center;
+  justify-content: center;
 }
 
-.footer-title {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
 
 .footer-description {
   font-size: 14px;
-  color: #b1b1b1;
 }
 
 .footer-heading {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 2.4vw;
+  margin-bottom: 6px;
 }
 
 .footer-links {
   list-style: none;
   padding: 0;
+
+}
+.footer-links li{
+  margin-bottom: 4px;
 }
 
 .footer-link {
-  color: #b1b1b1;
+  color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 1.4vw;
 }
 
 .footer-link:hover {
@@ -337,8 +356,8 @@ body {
 }
 
 .footer-text {
-  font-size: 14px;
-  color: #b1b1b1;
+  font-size: 1.4vw;
+  margin-bottom: 4px;
 }
 
 .footer-socials {
@@ -349,11 +368,11 @@ body {
 
 .footer-icon {
   color: #ffffff;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .footer-icon:hover {
-  color: #00bcd4;
+  color: #00C1FF
 }
 
 .footer-bottom {
@@ -366,7 +385,7 @@ body {
   font-size: 12px;
   color: #b1b1b1;
 }
-.page4{
-  height: 200vh;
-  background: purple;
+.page4 {
+  height: 5vh;
+  background: black;
 }
