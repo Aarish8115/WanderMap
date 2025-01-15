@@ -1,0 +1,154 @@
+@import url("./font.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Satoshi-Regular";
+}
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+#main {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+.rightsvg {
+  display: block;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.rightsvg image {
+  position: absolute;
+  height: 100%;
+}
+.login-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  left: 10vw;
+  gap: 2vw;
+  width: 30vw;
+}
+.heading h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 3vw;
+  font-family: "Satoshi-Medium";
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2vw;
+}
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+.login-box {
+  position: relative;
+  cursor: pointer;
+  height: 54px;
+  display: flex;
+  align-items: center;
+}
+.login-input {
+  outline: none;
+  border: none;
+  font-size: 14px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: #a2b9c529;
+  border-radius: 10px;
+  justify-content: end;
+  padding: 24px 12px 10px;
+}
+.login-label {
+  position: absolute;
+  left: 12.2px;
+  font-size: 14px;
+  transition: all ease-in;
+}
+.login-input:not(:placeholder-shown).login-input:not(:focus) ~ .login-label {
+  transform: translateY(-12px);
+  font-size: 10px;
+}
+
+/* .login-input:not(:placeholder-shown).login-input:not(:focus) {
+  padding-block: 2rem 1rem;
+} */
+.login-input:focus ~ .login-label {
+  transform: translateY(-12px);
+  font-size: 10px;
+}
+.login-input:focus {
+  border: 0.6px solid;
+  border-color: #1794cf;
+}
+
+.login-input:focus ~ .login-label,
+.login-input:focus ~ .login-icon {
+  color: #1794cf;
+}
+.login-forgot {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  font-size: 14px;
+  color: #1794cf;
+  text-decoration: none;
+}
+.login-forgot:hover {
+  text-decoration: underline;
+}
+.login-button {
+  height: 54px;
+  border-radius: 24px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #1794cf;
+  font-size: 18px;
+  font-family: "Satoshi-Bold";
+  cursor: pointer;
+}
+.social-login {
+  margin: 0 auto;
+}
+.social-login h4 {
+  margin-bottom: 6px;
+}
+.icons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.icons object {
+  height: 24px;
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  padding: 3px;
+}
+.icons object:hover {
+  box-shadow: 0px 0px 3px #1795cf6b;
+}
+.change {
+  margin: 0 auto;
+}
+.change span {
+  color: #1794cf;
+  text-decoration: underline;
+  cursor: pointer;
+}
