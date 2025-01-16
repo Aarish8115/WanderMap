@@ -42,12 +42,12 @@
       <div class="login-container">
         <div class="heading"><h2>Log in</h2></div>
         <div class="login-form-container">
-          <form action="" class="login-form">
+          <form action="/login" method="post" class="login-form">
             <div class="login-content grid">
               <div class="login-box">
                 <input
                   type="email"
-                  id="email"
+                  name="email"
                   required
                   placeholder=" "
                   class="login-input"
@@ -58,7 +58,7 @@
               <div class="login-box">
                 <input
                   type="password"
-                  id="password"
+                  name="password"
                   required
                   placeholder=" "
                   class="login-input"
@@ -75,12 +75,21 @@
         <div class="social-login">
           <h4>or login with</h4>
           <div class="icons">
-            <object data="../static/Images/google.svg" type="image/svg+xml"></object>
-            <object data="../static/Images/apple.svg" type="image/svg+xml"></object>
+            <object
+              data="../static/Images/google.svg"
+              type="image/svg+xml"
+            ></object>
+            <object
+              data="../static/Images/apple.svg"
+              type="image/svg+xml"
+            ></object>
           </div>
         </div>
         <div class="change">
-          <p>Dont have an account ? <a href="{{url_for('register')}}"><span>Create Account</span></a></p>
+          <p>
+            Dont have an account ?
+            <a href="{{url_for('register')}}"><span>Create Account</span></a>
+          </p>
         </div>
       </div>
     </div>

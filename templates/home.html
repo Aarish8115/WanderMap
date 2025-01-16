@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WanderMap - Username</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Uploads</title>
+  </head>
+  <body>
+    <h1>Welcome, {{ current_user.username }}</h1>
+    <h2>Your Uploaded Files:</h2>
+    <ul>
+      {% for upload in uploads %}
+      <li>
+        <img
+          src="static/{{ upload.file_path }}"
+          alt="Uploaded Image"
+          style="width: 300px; height: auto"
+        />
+      </li>
+      {% else %}
+      <li>No uploads found.</li>
+      {% endfor %}
+    </ul>
+    <form
+      action="{{ url_for('home') }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" accept="image/*" required />
+      <button type="submit">Upload</button>
+    </form>
+    <br />
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </body>
 </html>

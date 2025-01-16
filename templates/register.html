@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Register</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css"
@@ -42,12 +42,12 @@
       <div class="login-container">
         <div class="heading"><h2>Create Account</h2></div>
         <div class="login-form-container">
-          <form action="" class="login-form">
+          <form action="/register" method="post" class="login-form">
             <div class="login-content grid">
               <div class="login-box">
                 <input
                   type="text"
-                  id="username"
+                  name="username"
                   required
                   placeholder=" "
                   class="login-input"
@@ -57,7 +57,7 @@
               <div class="login-box">
                 <input
                   type="email"
-                  id="email"
+                  name="email"
                   required
                   placeholder=" "
                   class="login-input"
@@ -68,7 +68,7 @@
               <div class="login-box">
                 <input
                   type="password"
-                  id="password"
+                  name="password"
                   required
                   placeholder=" "
                   class="login-input"
