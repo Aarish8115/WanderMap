@@ -40,10 +40,20 @@
       </svg>
 
       <div class="login-container">
-        <div class="heading"><h2>Log in</h2></div>
+        <div class="heading"><h2>Create Account</h2></div>
         <div class="login-form-container">
           <form action="" class="login-form">
             <div class="login-content grid">
+              <div class="login-box">
+                <input
+                  type="text"
+                  id="username"
+                  required
+                  placeholder=" "
+                  class="login-input"
+                />
+                <label for="username" class="login-label">Username</label>
+              </div>
               <div class="login-box">
                 <input
                   type="email"
@@ -66,10 +76,7 @@
                 <label for="password" class="login-label">Password</label>
               </div>
             </div>
-
-            <a href="#" class="login-forgot">Forgot your password?</a>
-
-            <button type="submit" class="login-button">Login</button>
+            <button type="submit" class="login-button">Register</button>
           </form>
         </div>
         <div class="social-login">
@@ -80,7 +87,7 @@
           </div>
         </div>
         <div class="change">
-          <p>Dont have an account ? <a href="{{url_for('register')}}"><span>Create Account</span></a></p>
+          <p>Already a user ? <a href="{{url_for('login')}}"><span>Login</span></a></p>
         </div>
       </div>
     </div>
