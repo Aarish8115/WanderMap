@@ -4,32 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Uploads</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="../static/css/home.css" />
   </head>
   <body>
-    <h1>Welcome, {{ current_user.username }}</h1>
-    <h2>Your Uploaded Files:</h2>
-    <ul>
-      {% for upload in uploads %}
-      <li>
-        <img
-          src="static/{{ upload.file_path }}"
-          alt="Uploaded Image"
-          style="width: 300px; height: auto"
-        />
-      </li>
-      {% else %}
-      <li>No uploads found.</li>
-      {% endfor %}
-    </ul>
-    <form
-      action="{{ url_for('home') }}"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <input type="file" name="file" accept="image/*" required />
-      <button type="submit">Upload</button>
-    </form>
-    <br />
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <div class="main">
+      <div class="heading"><h2>Hello {{ current_user.username }}</h2></div>
+      <div class="map"><div id="map"></div></div>
+      <div class="add">
+        <form action="/add" method="POST">
+          <input
+            type="text"
+            id="city-search"
+            name="city"
+            placeholder="Search for a city"
+            autocomplete="off"
+            required
+          />
+          <ul
+            id="suggestions"
+            style="
+              list-style-type: none;
+              padding: 0;
+              border: 1px solid #ccc;
+              max-height: 150px;
+              overflow-y: auto;
+              display: none;
+            "
+          ></ul>
+          <textarea
+            name="famous_places"
+            placeholder="Famous places to visit in this city"
+          ></textarea>
+          <button type="submit">Add Destination</button>
+        </form>
+      </div>
+      <div class="location"></div>
+
+      <a href="{{ url_for('logout') }}">Logout</a>
+      <div class="temp"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="../static/script/home.js"></script>
   </body>
 </html>
