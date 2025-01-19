@@ -11,12 +11,33 @@ body {
   height: 100%;
   overflow-x: hidden;
 }
-
-.heading h2 {
+a {
+  text-decoration: none;
+}
+.heading {
   display: flex;
+  justify-content: space-between;
   width: 80%;
   margin: 5vh auto 0;
+  align-items: center;
+}
+.heading h2 {
   font-size: 2.8vw;
+}
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #1794cf;
+  font-size: 18px;
+  font-family: "Satoshi-Bold";
+  cursor: pointer;
+  padding: 20px 12px;
 }
 .map {
   width: 100%;
@@ -30,6 +51,9 @@ body {
   height: 90vh;
   overflow: hidden;
   border-radius: 20px;
+}
+.popup {
+  font-family: "Satoshi-Bold";
 }
 #suggestions li:hover {
   background-color: #f0f0f0;
@@ -97,21 +121,52 @@ body {
   font-family: "Satoshi-Medium";
   cursor: pointer;
 }
-.location{
+.add img {
+  height: 60vh;
+}
+.location {
   width: 80%;
   margin: 20px auto;
 }
-.location #city-list li{
-  display: flex;
+.location ul {
+  display: grid;
+  grid-template-columns: 25vw 25vw 25vw;
   justify-content: space-between;
-  font-size: 16px;
+  row-gap: 2.5vw;
 }
-.location #city-list{
+.city-list{
+  margin-bottom: 1vh;
+}
+.location .city-list li {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  font-size: 16px;
 }
-.location button{
+.location li img {
+  filter: blur(0.2px);
+  object-fit: cover;
+  z-index: -2;
+}
+.location li .data {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-family: "Satoshi-Black";
+  font-size: 28px;
+  text-align: center;
+  gap: 12px;
+}
+.location button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,5 +178,21 @@ body {
   background: #1794cf;
   font-size: 16px;
   font-family: "Satoshi-Medium";
-  cursor: pointer;padding: 8px;
+  cursor: pointer;
+  padding: 8px;
+}
+.sub-heading{
+  display: flex;
+  align-items: center;
+}
+.sub-heading h3{
+  font-size: 2.6vw;
+  display: flex;
+  align-items: center;
+  margin: 2vh 0;
+}
+.sub-heading h3 span {
+  font-family: "AppleGaramound-Italic";
+  font-weight: 200;
+  font-size: 3.2vw;
 }

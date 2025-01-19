@@ -16,7 +16,12 @@
   </head>
   <body>
     <div class="main">
-      <div class="heading"><h2>Hello {{ current_user.username }}</h2></div>
+      <div class="heading">
+        <h2>Hello {{ current_user.username }}</h2>
+        <a href="{{ url_for('logout') }}"
+          ><button class="logout">Logout</button></a
+        >
+      </div>
       <div class="map"><div id="map"></div></div>
       <div class="add">
         <form action="/add" method="POST">
@@ -46,25 +51,39 @@
           ></textarea>
           <button type="submit">Add Destination</button>
         </form>
+        <img src="../static/Images/six.png" alt="" />
       </div>
       <div class="location">
-        <ul id="city-list">
-          {% for city in cities %}
+        <div class="sub-heading"><h3>Your <span> Bucket</span></h3></div>
+        <ul class="city-list">
+          {% for city in cities %} {% if not city.visited %}
           <li>
-            {{ city.name }}
-            <button onclick="visitCity('{{city.id}}')">
-              {% if city.visited %}
-              Visited
-              {% else %}
-              Mark as Visited 
-              {% endif %}
-            </button>
+            <img src="../static/Images/background.jpg" alt="" />
+            <a href="/{{city.id}}"><div class="data">
+              {{ city.name.split(",")[0] }}
+              <button onclick="visitCity('{{city.id}}')">Mark visited</button>
+            </div></a>
           </li>
-          {% endfor %}
+          {% endif %} {% endfor %}
+        </ul>
+        <div class="sub-heading"><h3><span>Memories</span> </h3></div>
+        <ul class="city-list">
+          {% for city in cities %} {% if city.visited %}
+          <li>
+            <img src="../static/Images/background.jpg" alt="" />
+            <div class="data">
+              {{ city.name.split(",")[0] }}
+              <button onclick="visitCity('{{city.id}}')">
+                Mark not visited
+              </button>
+            </div>
+          </li>
+          {% endif %} {% endfor %}
         </ul>
       </div>
-
-      <a href="{{ url_for('logout') }}">Logout</a>
+      <a href="{{ url_for('logout') }}"
+        ><button class="logout">Logout</button></a
+      >
       <div class="temp"></div>
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

@@ -37,10 +37,12 @@ class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_path = db.Column(db.String(150), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
 class City(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     latitude = db.Column(db.Float, nullable=False)
+    detail=db.Column(db.String(400), nullable=True)
     longitude = db.Column(db.Float, nullable=False)
     visited = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -134,6 +136,15 @@ def home():
     cities=City.query.filter_by(user_id=current_user.id).all()
     return render_template('home.html', uploads=uploads,cities=cities)
 
+@app.route('/<int:city_id>', methods=['GET', 'POST'])
+@login_required
+def city(city_id):
+    city = City.query.get(city_id)
+    if city.user_id==current_user.id:
+        return city.detail
+    else:
+        return "Access Denied"
+
 @app.route('/api/cities', methods=['GET'])
 def get_cities():
     cities = City.query.filter_by(user_id=current_user.id).all()
@@ -153,8 +164,8 @@ def add_city():
     latitude, longitude = get_coordinates(city_name)
     
     if latitude is not None and longitude is not None:
-        new_city = City(name=city_name, latitude=latitude, longitude=longitude, visited=False,user_id=current_user.id)
-        print(city_name,current_user.username)
+        new_city = City(name=city_name, latitude=latitude, longitude=longitude,detail=famous_places, visited=False,user_id=current_user.id)
+
         db.session.add(new_city)
         db.session.commit()
         return redirect(url_for('home'))

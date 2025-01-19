@@ -19,15 +19,15 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   //   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 function addMarker(city) {
-  var color = city.visited ? "blue" : "red";
+  var color = city.visited ?"#7fad1a": "#1794cf";
   var marker = L.marker([city.latitude, city.longitude], {
     icon: L.divIcon({
       className: `marker-${color}`,
-      html: `<div style="background-color:${color};width:8px;height:8px;border-radius:50%;"></div>`,
+      html: `<svg style="fill:${color};height:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>`,
     }),
   }).addTo(map);
 
-  marker.bindPopup(`<b>${city.name}</b>`);
+  marker.bindPopup(`<div class="popup">${city.name}</div>`);
 }
 
 // Fetch cities from the server and add them to the map
