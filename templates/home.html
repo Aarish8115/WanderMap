@@ -40,13 +40,29 @@
             "
           ></ul>
           <textarea
+            id="textarea"
             name="famous_places"
-            placeholder="Famous places to visit in this city"
+            placeholder="Add details"
           ></textarea>
           <button type="submit">Add Destination</button>
         </form>
       </div>
-      <div class="location"></div>
+      <div class="location">
+        <ul id="city-list">
+          {% for city in cities %}
+          <li>
+            {{ city.name }}
+            <button onclick="visitCity('{{city.id}}')">
+              {% if city.visited %}
+              Visited
+              {% else %}
+              Mark as Visited 
+              {% endif %}
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
 
       <a href="{{ url_for('logout') }}">Logout</a>
       <div class="temp"></div>

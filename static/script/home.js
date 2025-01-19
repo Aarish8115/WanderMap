@@ -5,6 +5,9 @@ const scroll = new LocomotiveScroll({
 document.getElementById("suggestions").addEventListener("wheel", function (e) {
   e.stopPropagation(); // Prevent Locomotive Scroll from affecting the dropdown
 });
+document.getElementById("textarea").addEventListener("wheel", function (e) {
+  e.stopPropagation(); // Prevent Locomotive Scroll from affecting the dropdown
+});
 
 // Initialize the map
 var map = L.map("map").setView([0, 0], 2);
@@ -12,10 +15,27 @@ var map = L.map("map").setView([0, 0], 2);
 // Set the tile layer with noWrap to prevent infinite horizontal scrolling
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   noWrap: true, // Prevent the tiles from wrapping horizontally
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  // attribution:
+  //   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
+function addMarker(city) {
+  var color = city.visited ? "blue" : "red";
+  var marker = L.marker([city.latitude, city.longitude], {
+    icon: L.divIcon({
+      className: `marker-${color}`,
+      html: `<div style="background-color:${color};width:8px;height:8px;border-radius:50%;"></div>`,
+    }),
+  }).addTo(map);
 
+  marker.bindPopup(`<b>${city.name}</b>`);
+}
+
+// Fetch cities from the server and add them to the map
+fetch("/api/cities")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((city) => addMarker(city));
+  });
 // Set the bounds to limit the map view to a specific area (world bounds)
 var southWest = L.latLng(-85, -180),
   northEast = L.latLng(85, 180);
@@ -66,3 +86,12 @@ document.addEventListener("click", function (e) {
     document.getElementById("suggestions").style.display = "none";
   }
 });
+function visitCity(cityId) {
+  fetch(`/visit/${cityId}`, {
+    method: "POST",
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      location.reload(); // Reload the page to update the map and city list
+    });
+}

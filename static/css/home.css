@@ -12,11 +12,11 @@ body {
   overflow-x: hidden;
 }
 
-.heading h2{
-    display: flex;
-    width: 80%;
-    margin: 5vh auto 0;
-    font-size: 2.8vw;
+.heading h2 {
+  display: flex;
+  width: 80%;
+  margin: 5vh auto 0;
+  font-size: 2.8vw;
 }
 .map {
   width: 100%;
@@ -24,7 +24,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 #map {
   width: 80%;
@@ -33,18 +32,96 @@ body {
   border-radius: 20px;
 }
 #suggestions li:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 #suggestions {
-    position: absolute;
-    width: calc(100% - 20px); /* Adjust according to your input width */
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 1000;
+  position: absolute;
+  width: 100%; /* Adjust according to your input width */
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  border-radius: 10px;
+  top: 46px;
 }
 
-.temp{
-    height: 600px;
-    background: red;
+.temp {
+  height: 600px;
+  background: red;
+}
+.add {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+.add form input {
+  outline: none;
+  border: 0.4px solid black;
+  font-size: 16px;
+  height: 46px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #a2b9c529;
+  border-radius: 10px;
+  justify-content: end;
+  padding: 12px;
+}
+.add form textarea {
+  outline: none;
+  border: 0.4px solid black;
+  background: #a2b9c529;
+  font-size: 16px;
+  height: 140px;
+  padding: 12px;
+  border-radius: 10px;
+  resize: none;
+}
+.add form button {
+  height: 46px;
+  border-radius: 22px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #1794cf;
+  font-size: 16px;
+  font-family: "Satoshi-Medium";
+  cursor: pointer;
+}
+.location{
+  width: 80%;
+  margin: 20px auto;
+}
+.location #city-list li{
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.location #city-list{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.location button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #1794cf;
+  font-size: 16px;
+  font-family: "Satoshi-Medium";
+  cursor: pointer;padding: 8px;
 }

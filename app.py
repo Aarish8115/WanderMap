@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
+import requests
+from flask import Flask, render_template, request, redirect, url_for, flash,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,11 +37,34 @@ class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_path = db.Column(db.String(150), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
+class City(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
+    visited = db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 # Load user function for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
+def get_coordinates(city_name):
+    api_key = 'f4ae94146a744187b2f78b6637aaec82'  # Replace with your OpenCage API key
+    url = f'https://api.opencagedata.com/geocode/v1/json?q={city_name}&key={api_key}'
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if data['results']:
+            latitude = data['results'][0]['geometry']['lat']
+            longitude = data['results'][0]['geometry']['lng']
+            return latitude, longitude
+        else:
+            return None, None  # No results found for the city
+    else:
+        return None, None  # API request failed
 
 # Route for the landing page (index.html)
 @app.route('/')
@@ -107,8 +131,43 @@ def home():
 
     # Fetch uploads for the current user
     uploads = Upload.query.filter_by(user_id=current_user.id).all()
-    return render_template('home.html', uploads=uploads)
+    cities=City.query.filter_by(user_id=current_user.id).all()
+    return render_template('home.html', uploads=uploads,cities=cities)
 
+@app.route('/api/cities', methods=['GET'])
+def get_cities():
+    cities = City.query.filter_by(user_id=current_user.id).all()
+    return jsonify([{
+        'id': city.id,
+        'name': city.name,
+        'latitude': city.latitude,
+        'longitude': city.longitude,
+        'visited': city.visited
+    } for city in cities])
+
+@app.route('/add', methods=['POST'])
+def add_city():
+    city_name = request.form['city']
+    famous_places = request.form['famous_places']
+    
+    latitude, longitude = get_coordinates(city_name)
+    
+    if latitude is not None and longitude is not None:
+        new_city = City(name=city_name, latitude=latitude, longitude=longitude, visited=False,user_id=current_user.id)
+        print(city_name,current_user.username)
+        db.session.add(new_city)
+        db.session.commit()
+        return redirect(url_for('home'))
+    else:
+        return "Error: Could not find coordinates for the city."
+
+@app.route('/visit/<int:city_id>', methods=['POST'])
+def visit_city(city_id):
+    city = City.query.get(city_id)
+    city.visited = not city.visited
+    print(city.visited)
+    db.session.commit()
+    return "City marked as visited!"
 # Route to handle logout
 @app.route('/logout')
 @login_required
