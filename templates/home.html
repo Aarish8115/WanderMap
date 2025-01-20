@@ -54,30 +54,38 @@
         <img src="../static/Images/six.png" alt="" />
       </div>
       <div class="location">
-        <div class="sub-heading"><h3>Your <span> Bucket</span></h3></div>
+        <div class="sub-heading">
+          <h3>Your <span> Bucket</span></h3>
+        </div>
         <ul class="city-list">
           {% for city in cities %} {% if not city.visited %}
-          <li>
-            <img src="../static/Images/background.jpg" alt="" />
-            <a href="/{{city.id}}"><div class="data">
-              {{ city.name.split(",")[0] }}
-              <button onclick="visitCity('{{city.id}}')">Mark visited</button>
-            </div></a>
-          </li>
+          <a href="/{{city.id}}"
+            ><li>
+              <img src="../static/Images/background.jpg" alt="" />
+              <div class="data">
+                {{ city.name.split(",")[0] }}
+                <button onclick="visitCity('{{city.id}}')">Mark visited</button>
+              </div>
+            </li></a
+          >
           {% endif %} {% endfor %}
         </ul>
-        <div class="sub-heading"><h3><span>Memories</span> </h3></div>
+        <div class="sub-heading">
+          <h3><span>Memories</span></h3>
+        </div>
         <ul class="city-list">
           {% for city in cities %} {% if city.visited %}
-          <li>
-            <img src="../static/Images/background.jpg" alt="" />
-            <div class="data">
-              {{ city.name.split(",")[0] }}
-              <button onclick="visitCity('{{city.id}}')">
-                Mark not visited
-              </button>
-            </div>
-          </li>
+          <a href="/{{city.id}}"
+            ><li>
+              <img src="../static/Images/background.jpg" alt="" />
+              <div class="data">
+                {{ city.name.split(",")[0] }}
+                <button onclick="visitCity('{{city.id}}')">
+                  Mark not visited
+                </button>
+              </div>
+            </li>
+          </a>
           {% endif %} {% endfor %}
         </ul>
       </div>

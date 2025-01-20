@@ -141,9 +141,21 @@ def home():
 def city(city_id):
     city = City.query.get(city_id)
     if city.user_id==current_user.id:
-        return city.detail
+        return render_template("city.html",city=city)
     else:
         return "Access Denied"
+    
+@app.route('/<int:city_id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_rec(city_id):
+    record = City.query.get(city_id)
+
+    if record:
+        db.session.delete(record)
+        db.session.commit()
+        return redirect(url_for('home'))
+    else:
+        print("Record not found")
 
 @app.route('/api/cities', methods=['GET'])
 def get_cities():
