@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body><p>{{city.detail}}</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/city.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <title>{{ current_user.username }} - {{city.name.split(",")[0]}}</title>
+  </head>
+  <body>
+    <div class="top">
+      <div class="left">
+        <h2>{{city.name}}</h2>
+        <p>{{city.detail}}</p>
+      </div>
+      <div id="map1"></div>
+    </div>
     <a href="{{city.id}}/delete"><button>delete</button></a>
-</body>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Latitude and longitude of the center point
+      const latitude = 40.7128; // Example: New York City
+      const longitude = -74.006;
+
+      // Initialize the map
+      const map1 = L.map("map1", {
+        center: [latitude, longitude],
+        zoom: 4, // Zoom level to focus tightly
+        dragging: false, // Disable dragging
+        scrollWheelZoom: false, // Disable zooming with scroll
+        doubleClickZoom: false, // Disable double-click zoom
+        boxZoom: false, // Disable box zoom
+        keyboard: false, // Disable keyboard interactions
+        touchZoom: false, // Disable pinch-to-zoom
+        zoomControl: false, // Remove the zoom control (plus and minus buttons)
+      });
+
+      // Add a tile layer to the map (OpenStreetMap tiles)
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+        map1
+      );
+
+      // Add a marker at the center point
+      var color = "#7fad1a";
+      var marker = L.marker([latitude, longitude], {
+        icon: L.divIcon({
+          className: `marker-${color}`,
+          html: `<svg style="fill:${color};height:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>`,
+        }),
+      }).addTo(map1);
+
+      marker.bindPopup(`<div class="popup">${latitude} ${longitude}</a></div>`);
+    </script>
+  </body>
 </html>

@@ -14,6 +14,10 @@ body {
 a {
   text-decoration: none;
 }
+*::selection {
+  color: white;
+  background: #81BFDA;
+}
 .heading {
   display: flex;
   justify-content: space-between;
@@ -21,8 +25,47 @@ a {
   margin: 5vh auto 0;
   align-items: center;
 }
+#user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.heading .profilepic {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  border: 2px solid rgb(0, 0, 0);
+}
+.heading .profilepic img {
+  height: 24px;
+  z-index: -1;
+}
 .heading h2 {
   font-size: 2.8vw;
+}
+.heading .btn {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.btn .bucket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #81BFDA;
+  font-size: 18px;
+  font-family: "Satoshi-Bold";
+  cursor: pointer;
+  padding: 20px 12px;
 }
 .logout {
   display: flex;
@@ -33,7 +76,7 @@ a {
   outline: none;
   border: none;
   color: white;
-  background: #1794cf;
+  background: #ff6363;
   font-size: 18px;
   font-family: "Satoshi-Bold";
   cursor: pointer;
@@ -70,7 +113,7 @@ a {
 }
 
 .temp {
-  height: 600px;
+  /* height: 100vh; */
   background: red;
 }
 .add {
@@ -79,6 +122,41 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+.blob {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  background-color: #B1F0F7;
+  position: absolute;
+  z-index: -2;
+  filter: blur(40px);
+  top: -80%;
+  left: -20%;
+  animation-name: move-blob;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+.blob2 {
+  display: flex;
+  height: 600px;
+  width: 600px;
+  border-radius: 50%;
+  background-color: #B1F0F7;
+  position: absolute;
+  z-index: -2;
+  filter: blur(30px);
+  top: -80%;
+  left: -45%;
+  animation-name: move-blob2;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
 }
 .add form {
   width: 50%;
@@ -95,7 +173,7 @@ a {
   width: 100%;
   display: flex;
   align-items: center;
-  background: #a2b9c529;
+  background: #ffffff66;
   border-radius: 10px;
   justify-content: end;
   padding: 12px;
@@ -103,7 +181,7 @@ a {
 .add form textarea {
   outline: none;
   border: 0.4px solid black;
-  background: #a2b9c529;
+  background: #ffffff66;
   font-size: 16px;
   height: 140px;
   padding: 12px;
@@ -116,7 +194,7 @@ a {
   outline: none;
   border: none;
   color: white;
-  background: #1794cf;
+  background: #81BFDA;
   font-size: 16px;
   font-family: "Satoshi-Medium";
   cursor: pointer;
@@ -134,7 +212,7 @@ a {
   justify-content: space-between;
   row-gap: 2.5vw;
 }
-.city-list{
+.city-list {
   margin-bottom: 1vh;
 }
 .location .city-list li {
@@ -143,6 +221,7 @@ a {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  height: 15vw;
   border-radius: 10px;
   font-size: 16px;
 }
@@ -150,6 +229,8 @@ a {
   filter: blur(0.2px);
   object-fit: cover;
   z-index: -2;
+  height: 15vw;
+  filter: brightness(75%);
 }
 .location li .data {
   position: absolute;
@@ -160,11 +241,13 @@ a {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
+  gap: 12px;
+}
+.location li .data a {
   color: white;
   font-family: "Satoshi-Black";
   font-size: 28px;
   text-align: center;
-  gap: 12px;
 }
 .location button {
   display: flex;
@@ -175,20 +258,61 @@ a {
   outline: none;
   border: none;
   color: white;
-  background: #1794cf;
+  background: #81BFDA;
   font-size: 16px;
   font-family: "Satoshi-Medium";
   cursor: pointer;
   padding: 8px;
   z-index: 5;
 }
-.sub-heading{
+.sub-heading {
   display: flex;
   align-items: center;
-
 }
-.sub-heading h3{
-  font-size: 2.6vw;
+.goal {
+  position: relative;
+  margin: 3vw 0 2vw;
+  display: flex;
+  justify-content: space-between;
+}
+.blob3 {
+  display: flex;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-color: #B1F0F7;
+  position: absolute;
+  z-index: -99;
+  filter: blur(40px);
+  /* transform: translate(-50%,-50%); */
+  top: -40vh;
+  right: -35%;
+  animation-name: move-blob3;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+.goal .left {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+.goal .right {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  font-size: 1.4vw;
+  font-weight: 700;
+}
+.goal img {
+  height: 8vw;
+}
+.goal h3 {
+  font-size: 5vw;
+}
+.sub-heading h3 {
+  font-size: 3.6vw;
   display: flex;
   align-items: center;
   margin: 2vh 0;
@@ -197,5 +321,41 @@ a {
 .sub-heading h3 span {
   font-family: "AppleGaramound-Italic";
   font-weight: 200;
-  font-size: 3.2vw;
+  font-size: 4vw;
+}
+.bottom-logout {
+  width: 80%;
+  margin: 5vw auto;
+}
+.bottom-logout a {
+  display: flex;
+  justify-content: center;
+}
+.bottom {
+  height: 90px;
+  }
+
+@keyframes move-blob {
+  from {
+    transform: translate(-40px, -30px);
+  }
+  to {
+    transform: translate(35px, 45px);
+  }
+}
+@keyframes move-blob2 {
+  from {
+    transform: translate(30px, 0px);
+  }
+  to {
+    transform: translate(-30px, 20px);
+  }
+}
+@keyframes move-blob3 {
+  from {
+    transform: translate(40px, -10px);
+  }
+  to {
+    transform: translate(-30px, 20px);
+  }
 }

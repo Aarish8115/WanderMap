@@ -177,7 +177,6 @@ def add_city():
     
     if latitude is not None and longitude is not None:
         new_city = City(name=city_name, latitude=latitude, longitude=longitude,detail=famous_places, visited=False,user_id=current_user.id)
-
         db.session.add(new_city)
         db.session.commit()
         return redirect(url_for('home'))
@@ -188,7 +187,6 @@ def add_city():
 def visit_city(city_id):
     city = City.query.get(city_id)
     city.visited = not city.visited
-    print(city.visited)
     db.session.commit()
     return "City marked as visited!"
 # Route to handle logout

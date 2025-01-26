@@ -325,8 +325,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 20vw;
-  align-items: center;
-  justify-content: center;
+  text-align: left;
 }
 
 
@@ -365,7 +364,6 @@ body {
 
 .footer-socials {
   display: flex;
-  justify-content: center;
   gap: 15px;
 }
 

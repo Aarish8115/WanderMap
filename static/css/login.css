@@ -93,19 +93,19 @@ body {
 }
 .login-input:focus {
   border: 0.6px solid;
-  border-color: #1794cf;
+  border-color: #81BFDA;
 }
 
 .login-input:focus ~ .login-label,
 .login-input:focus ~ .login-icon {
-  color: #1794cf;
+  color: #81BFDA;
 }
 .login-forgot {
   display: flex;
   justify-content: end;
   width: 100%;
   font-size: 14px;
-  color: #1794cf;
+  color: #81BFDA;
   text-decoration: none;
 }
 .login-forgot:hover {
@@ -117,7 +117,7 @@ body {
   outline: none;
   border: none;
   color: white;
-  background: #1794cf;
+  background: #81BFDA;
   font-size: 18px;
   font-family: "Satoshi-Bold";
   cursor: pointer;
@@ -148,7 +148,7 @@ body {
   margin: 0 auto;
 }
 .change span {
-  color: #1794cf;
+  color: #81BFDA;
   text-decoration: underline;
   cursor: pointer;
 }

@@ -14,3 +14,20 @@ body {
 a {
   text-decoration: none;
 }
+#map1 {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.left p {
+  width: 40vw;
+}

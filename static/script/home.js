@@ -10,7 +10,9 @@ document.getElementById("textarea").addEventListener("wheel", function (e) {
 });
 
 // Initialize the map
-var map = L.map("map").setView([0, 0], 2);
+var map = L.map("map", {
+  scrollWheelZoom: false,
+}).setView([0, 0], 2);
 
 // Set the tile layer with noWrap to prevent infinite horizontal scrolling
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -18,8 +20,9 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   // attribution:
   //   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
+
 function addMarker(city) {
-  var color = city.visited ?"#7fad1a": "#1794cf";
+  var color = city.visited ? "#7fad1a" : "#1794cf";
   var marker = L.marker([city.latitude, city.longitude], {
     icon: L.divIcon({
       className: `marker-${color}`,
@@ -27,7 +30,9 @@ function addMarker(city) {
     }),
   }).addTo(map);
 
-  marker.bindPopup(`<div class="popup">${city.name}</div>`);
+  marker.bindPopup(
+    `<div class="popup"><a href="/${city.id}">${city.name}</a></div>`
+  );
 }
 
 // Fetch cities from the server and add them to the map
