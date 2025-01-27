@@ -98,6 +98,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
+        print(username,email)
         password = generate_password_hash(request.form['password'])
         
         new_user = User(username=username, email=email, password=password)
@@ -136,12 +137,12 @@ def city(city_id):
                 db.session.commit()
             else:
                 flash('Invalid file type!', 'danger')
-        return redirect(url_for('city', city_id=city_id))
+        return redirect(url_for('city', city_id=city_id, uploads=uploads,current_user=current_user))
     
     city = City.query.get(city_id)
     uploads = Upload.query.filter_by(user_id=current_user.id,city_id=city.id).all()
     if city.user_id==current_user.id:
-        return render_template("city.html",city=city, uploads=uploads)
+        return render_template("city.html",city=city, uploads=uploads,current_user=current_user)
     else:
         return "Access Denied"
     
