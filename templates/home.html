@@ -69,16 +69,18 @@
           <h3>Your <span> Bucket</span></h3>
         </div>
         <ul class="city-list">
-          {% for city in cities %} {% if not city.visited %}
-
-          <li>
-            <img src="../static/Images/bucket{{city.id}}.jpg" alt="" />
-            <div class="data">
-              <a href="/{{city.id}}"> {{ city.name.split(",")[0] }}</a>
-              <button onclick="visitCity('{{city.id}}')">Mark visited</button>
-            </div>
-          </li>
-          {% endif %} {% endfor %}
+          {% for city in cities %} 
+            {% if not city.visited %}
+              {% set image_index = loop.index0 % 6 + 1 %}
+              <li>
+                <img src="../static/Images/bucket{{ image_index }}.jpg" alt="" />
+                <div class="data">
+                  <a href="/{{ city.id }}"> {{ city.name.split(",")[0] }}</a>
+                  <button onclick="visitCity('{{ city.id }}')">Mark visited</button>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
         </ul>
         <div class="goal">
           <div class="blob3"></div>
@@ -94,18 +96,18 @@
           <h3><span>Memories</span></h3>
         </div>
         <ul class="city-list">
-          {% for city in cities %} {% if city.visited %}
-          <li>
-            <img src="../static/Images/background.jpg" alt="" />
-            <div class="data">
-              <a href="/{{city.id}}"> {{ city.name.split(",")[0] }}</a>
-              <button onclick="visitCity('{{city.id}}')">
-                Mark not visited
-              </button>
-            </div>
-          </li>
-
-          {% endif %} {% endfor %}
+          {% for city in cities %} 
+            {% if  city.visited %}
+              {% set image_index = loop.index0 % 6 + 1 %}
+              <li>
+                <img src="../static/Images/bucket{{ image_index }}.jpg" alt="" />
+                <div class="data">
+                  <a href="/{{ city.id }}"> {{ city.name.split(",")[0] }}</a>
+                  <button onclick="visitCity('{{ city.id }}')">Mark visited</button>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
         </ul>
       </div>
       <div class="bottom-logout">

@@ -16,7 +16,7 @@ a {
 }
 *::selection {
   color: white;
-  background: #81BFDA;
+  background: #81bfda;
 }
 .heading {
   display: flex;
@@ -61,7 +61,7 @@ a {
   outline: none;
   border: none;
   color: white;
-  background: #81BFDA;
+  background: #81bfda;
   font-size: 18px;
   font-family: "Satoshi-Bold";
   cursor: pointer;
@@ -104,7 +104,7 @@ a {
 
 #suggestions {
   position: absolute;
-  width: 100%; /* Adjust according to your input width */
+  width: 100%;
   background-color: white;
   border: 1px solid #ccc;
   z-index: 1000;
@@ -129,7 +129,7 @@ a {
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  background-color: #B1F0F7;
+  background-color: #b1f0f7;
   position: absolute;
   z-index: -2;
   filter: blur(40px);
@@ -146,7 +146,7 @@ a {
   height: 600px;
   width: 600px;
   border-radius: 50%;
-  background-color: #B1F0F7;
+  background-color: #b1f0f7;
   position: absolute;
   z-index: -2;
   filter: blur(30px);
@@ -194,7 +194,7 @@ a {
   outline: none;
   border: none;
   color: white;
-  background: #81BFDA;
+  background: #81bfda;
   font-size: 16px;
   font-family: "Satoshi-Medium";
   cursor: pointer;
@@ -258,7 +258,7 @@ a {
   outline: none;
   border: none;
   color: white;
-  background: #81BFDA;
+  background: #81bfda;
   font-size: 16px;
   font-family: "Satoshi-Medium";
   cursor: pointer;
@@ -280,7 +280,7 @@ a {
   height: 500px;
   width: 500px;
   border-radius: 50%;
-  background-color: #B1F0F7;
+  background-color: #b1f0f7;
   position: absolute;
   z-index: -99;
   filter: blur(40px);
@@ -333,7 +333,7 @@ a {
 }
 .bottom {
   height: 90px;
-  }
+}
 
 @keyframes move-blob {
   from {

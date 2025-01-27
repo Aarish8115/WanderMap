@@ -12,25 +12,40 @@ body {
   overflow-x: hidden;
   position: relative;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }
 #map1 {
   height: 200px;
   width: 200px;
-  border: 1px solid black;
+  border-radius: 10px;
 }
 .top {
   display: flex;
   justify-content: space-between;
+  padding: 3vw 5vw;
 }
 .left {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
+.left h2 {
+  font-size: 4vw;
+  font-weight: 700;
+}
+.left h4 {
+  font-size: 2vw;
+  font-weight: 500;
+}
 .left p {
   width: 40vw;
+  font-size: 1.6vw;
+  font-weight: 300;
 }
 .blob1 {
   display: flex;
@@ -41,12 +56,12 @@ a {
   position: absolute;
   z-index: -2;
   filter: blur(40px);
-  top: -80%;
-  left: -20%;
+  top: -30%;
+  left: 55%;
   animation-name: move-blob1;
   animation-duration: 3s;
   animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
   animation-direction: alternate;
 }
 .blob2 {
@@ -58,21 +73,32 @@ a {
   position: absolute;
   z-index: -2;
   filter: blur(40px);
-  top: -80%;
-  left: -20%;
-  animation-name: move-blob;
+  top: -68%;
+  left: 65%;
+  animation-name: move-blob2;
   animation-duration: 4s;
-  animation-iteration-count: infinite2;
-  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
   animation-direction: alternate;
 }
 .images {
   width: 90vw;
   margin: 20px auto;
+  min-height: 30vh;
+}
+.images h3 {
+  font-size: 4vw;
+  font-weight: 400;
+  font-family: "AppleGaramound-Italic";
+  margin-bottom: 40px;
 }
 .image-list {
   columns: 4;
   column-gap: 20px;
+}
+.image-list p {
+  font-size: 1.6vw;
+  font-weight: 300;
 }
 .image-list .box {
   border-radius: 10px;
@@ -114,11 +140,54 @@ a {
 .bottom-img {
   height: 90px;
 }
-@keyframes move-blob {
+.upload {
+  width: 90vw;
+  margin: 3vw auto;
+  height: 30vh;
+}
+.upload h2 {
+  font-size: 2.6vw;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.upload label {
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+.upload input {
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+.upload button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #81bfda;
+  font-size: 18px;
+  font-family: "Satoshi-Bold";
+  cursor: pointer;
+  padding: 20px 12px;
+
+  margin: 16px 0px;
+}
+@keyframes move-blob1 {
+  from {
+    transform: translate(60px, -40px);
+  }
+  to {
+    transform: translate(-30px, 45px);
+  }
+}
+@keyframes move-blob2 {
   from {
     transform: translate(-40px, -30px);
   }
   to {
-    transform: translate(35px, 45px);
+    transform: translate(30px, 30px);
   }
 }

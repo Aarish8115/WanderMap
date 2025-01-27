@@ -3,22 +3,16 @@ const scroll = new LocomotiveScroll({
   smooth: true,
 });
 document.getElementById("suggestions").addEventListener("wheel", function (e) {
-  e.stopPropagation(); // Prevent Locomotive Scroll from affecting the dropdown
+  e.stopPropagation();
 });
 document.getElementById("textarea").addEventListener("wheel", function (e) {
-  e.stopPropagation(); // Prevent Locomotive Scroll from affecting the dropdown
+  e.stopPropagation();
 });
 
-// Initialize the map
-var map = L.map("map", {
-  scrollWheelZoom: false,
-}).setView([0, 0], 2);
+var map = L.map("map", { scrollWheelZoom: false }).setView([0, 0], 2);
 
-// Set the tile layer with noWrap to prevent infinite horizontal scrolling
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  noWrap: true, // Prevent the tiles from wrapping horizontally
-  // attribution:
-  //   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  noWrap: true,
 }).addTo(map);
 
 function addMarker(city) {
@@ -35,13 +29,12 @@ function addMarker(city) {
   );
 }
 
-// Fetch cities from the server and add them to the map
 fetch("/api/cities")
   .then((response) => response.json())
   .then((data) => {
     data.forEach((city) => addMarker(city));
   });
-// Set the bounds to limit the map view to a specific area (world bounds)
+
 var southWest = L.latLng(-85, -180),
   northEast = L.latLng(85, 180);
 var bounds = L.latLngBounds(southWest, northEast);
@@ -53,7 +46,6 @@ map.on("drag", function () {
 document.getElementById("city-search").addEventListener("input", function () {
   var query = this.value.trim();
   if (query.length > 2) {
-    // Fetch only when the query has more than 2 characters
     fetch(
       `https://api.opencagedata.com/geocode/v1/json?q=${query}&key=f4ae94146a744187b2f78b6637aaec82`
     )
@@ -61,7 +53,7 @@ document.getElementById("city-search").addEventListener("input", function () {
       .then((data) => {
         var suggestions = document.getElementById("suggestions");
         suggestions.innerHTML = "";
-        suggestions.style.display = "block"; // Show the suggestions list
+        suggestions.style.display = "block";
         data.results.forEach((result) => {
           var li = document.createElement("li");
           li.textContent = result.formatted;
@@ -70,18 +62,17 @@ document.getElementById("city-search").addEventListener("input", function () {
           li.addEventListener("click", function () {
             document.getElementById("city-search").value = result.formatted;
             suggestions.innerHTML = "";
-            suggestions.style.display = "none"; // Hide the suggestions after selection
+            suggestions.style.display = "none";
           });
           suggestions.appendChild(li);
         });
       });
   } else {
     document.getElementById("suggestions").innerHTML = "";
-    document.getElementById("suggestions").style.display = "none"; // Hide suggestions when query is too short
+    document.getElementById("suggestions").style.display = "none";
   }
 });
 
-// Hide suggestions when clicking outside
 document.addEventListener("click", function (e) {
   if (
     !document.getElementById("city-search").contains(e.target) &&
@@ -91,12 +82,11 @@ document.addEventListener("click", function (e) {
     document.getElementById("suggestions").style.display = "none";
   }
 });
+
 function visitCity(cityId) {
-  fetch(`/visit/${cityId}`, {
-    method: "POST",
-  })
+  fetch(`/visit/${cityId}`, { method: "POST" })
     .then((response) => response.text())
-    .then((data) => {
-      location.reload(); // Reload the page to update the map and city list
+    .then(() => {
+      location.reload();
     });
 }

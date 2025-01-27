@@ -11,73 +11,72 @@
     <title>{{ current_user.username }} - {{city.name.split(",")[0]}}</title>
   </head>
   <body>
-    <div class="top">
-      <div class="blob1"></div>
-      <div class="blob2"></div>
-      <div class="left">
-        <h2>{{city.name}}</h2>
-        <h4>{%if city.visited%} Explored {%else%} In the bucket {%endif%}</h4>
-        <p>{%if city.detail %} {{city.detail}} {%else%} No details {%endif%}</p>
-      </div>
-      <div
-        id="map1"
-        data-lat="{{ city.latitude }}"
-        data-lon="{{ city.longitude }}"
-        data-name="{{ city.name }}"
-      ></div>
-    </div>
-    <div class="images">
-      <h3>Memories</h3>
-      <div class="image-list">
-        {% for upload in uploads %}
-        <div class="box">
-          <img
-            src="{{ url_for('static', filename=upload.file_path) }}"
-            alt="{{ upload.file_path.split('/')[-1] }}"
-          />
+    <div class="main">
+      <div class="top">
+        <div class="blob1"></div>
+        <div class="blob2"></div>
+        <div class="left">
+          <h2>{{city.name}}</h2>
+          <h4>{%if city.visited%} Explored {%else%} In the bucket {%endif%}</h4>
+          <p>
+            {%if city.detail %} {{city.detail}} {%else%} No details {%endif%}
+          </p>
         </div>
-        {% endfor %}
+        <div
+          id="map1"
+          data-lat="{{ city.latitude }}"
+          data-lon="{{ city.longitude }}"
+          data-name="{{ city.name }}"
+        ></div>
       </div>
+      <div class="images">
+        <h3>Memories</h3>
+        <div class="image-list">
+          {%if uploads%} {% for upload in uploads %}
+          <div class="box">
+            <img
+              src="{{ url_for('static', filename=upload.file_path) }}"
+              alt="{{ upload.file_path.split('/')[-1] }}"
+            />
+          </div>
+          {% endfor %} {%else%}
+          <p>Add Photos</p>
+        </div>
+        {%endif%}
+      </div>
+      <form class="upload" method="POST" enctype="multipart/form-data">
+        <h2>Upload New Image:</h2>
+        <label for="file">Choose an image:</label>
+        <input type="file" name="file" id="file" accept="image/*" multiple />
+        <button type="submit">Upload</button>
+      </form>
+      <div class="bottom">
+        <a href="{{city.id}}/delete"><button class="delete">delete</button></a>
+      </div>
+      <img class="bottom-img" src="../static/Images/wave.png" alt="" />
     </div>
-
-    <!-- Form to Upload a New Image -->
-    <h2>Upload a New Image:</h2>
-    <form method="POST" enctype="multipart/form-data">
-      <label for="file">Choose an image:</label>
-      <input type="file" name="file" id="file" accept="image/*" multiple />
-      <button type="submit" style="margin-top: 10px">Upload</button>
-    </form>
-    <div class="bottom">
-      <a href="{{city.id}}/delete"><button class="delete">delete</button></a>
-    </div>
-    <img class="bottom-img" src="../static/Images/wave.png" alt="" />
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
       const mapDiv = document.getElementById("map1");
       const latitude = mapDiv.getAttribute("data-lat");
       const longitude = mapDiv.getAttribute("data-lon");
       const cityname = mapDiv.getAttribute("data-name");
-      console.log(latitude, longitude);
-      // Initialize the map
       const map1 = L.map("map1", {
         center: [latitude, longitude],
-        zoom: 4, // Zoom level to focus tightly
-        dragging: false, // Disable dragging
-        scrollWheelZoom: false, // Disable zooming with scroll
-        doubleClickZoom: false, // Disable double-click zoom
-        boxZoom: false, // Disable box zoom
-        keyboard: false, // Disable keyboard interactions
-        touchZoom: false, // Disable pinch-to-zoom
-        zoomControl: false, // Remove the zoom control (plus and minus buttons)
+        zoom: 4,
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        touchZoom: false,
+        zoomControl: false,
       });
 
-      // Add a tile layer to the map (OpenStreetMap tiles)
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
         map1
       );
 
-      // Add a marker at the center point
       var color = "#7fad1a";
       var marker = L.marker([latitude, longitude], {
         icon: L.divIcon({
@@ -85,8 +84,6 @@
           html: `<svg style="fill:${color};height:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>`,
         }),
       }).addTo(map1);
-
-      //marker.bindPopup(`<div class="popup">${cityname}}</a></div>`);
     </script>
   </body>
 </html>
