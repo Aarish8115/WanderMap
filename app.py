@@ -37,6 +37,7 @@ class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_path = db.Column(db.String(150), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
 
 class City(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -111,37 +112,36 @@ def register():
 @app.route('/home', methods=['GET', 'POST'])
 @login_required
 def home():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            # Generate a secure filename
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            
-            # Save the file to the server inside 'static/uploads'
-            file.save(file_path)
-            
-            # Save the file info to the database
-            new_upload = Upload(user_id=current_user.id, file_path=f'uploads/{filename}')
-            print(f'uploads/{filename}')
-            db.session.add(new_upload)
-            db.session.commit()
-            
-            flash('File uploaded successfully!', 'success')
-        else:
-            flash('Invalid file type!', 'danger')
-
-    # Fetch uploads for the current user
-    uploads = Upload.query.filter_by(user_id=current_user.id).all()
     cities=City.query.filter_by(user_id=current_user.id).all()
-    return render_template('home.html', uploads=uploads,cities=cities)
+    return render_template('home.html',cities=cities)
 
 @app.route('/<int:city_id>', methods=['GET', 'POST'])
 @login_required
 def city(city_id):
+    if request.method == 'POST':
+        files = request.files.getlist('file') 
+        for file in files:
+            if file and allowed_file(file.filename):
+                # Generate a secure filename
+                filename = secure_filename(file.filename)
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                
+                # Save the file to the server inside 'static/uploads'
+                file.save(file_path)
+                
+                # Save the file info to the database
+                new_upload = Upload(user_id=current_user.id,city_id=city_id, file_path=f'uploads/{filename}')
+                print(f'uploads/{filename}')
+                db.session.add(new_upload)
+                db.session.commit()
+            else:
+                flash('Invalid file type!', 'danger')
+        return redirect(url_for('city', city_id=city_id))
+    
     city = City.query.get(city_id)
+    uploads = Upload.query.filter_by(user_id=current_user.id,city_id=city.id).all()
     if city.user_id==current_user.id:
-        return render_template("city.html",city=city)
+        return render_template("city.html",city=city, uploads=uploads)
     else:
         return "Access Denied"
     

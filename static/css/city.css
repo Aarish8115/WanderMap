@@ -10,6 +10,7 @@ body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 a {
   text-decoration: none;
@@ -30,4 +31,94 @@ a {
 }
 .left p {
   width: 40vw;
+}
+.blob1 {
+  display: flex;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-color: #b1f0f7;
+  position: absolute;
+  z-index: -2;
+  filter: blur(40px);
+  top: -80%;
+  left: -20%;
+  animation-name: move-blob1;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+.blob2 {
+  display: flex;
+  height: 600px;
+  width: 600px;
+  border-radius: 50%;
+  background-color: #b1f0f7;
+  position: absolute;
+  z-index: -2;
+  filter: blur(40px);
+  top: -80%;
+  left: -20%;
+  animation-name: move-blob;
+  animation-duration: 4s;
+  animation-iteration-count: infinite2;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+.images {
+  width: 90vw;
+  margin: 20px auto;
+}
+.image-list {
+  columns: 4;
+  column-gap: 20px;
+}
+.image-list .box {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.bottom {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 40px 0;
+}
+.bottom a {
+  display: flex;
+}
+.bottom button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  color: white;
+  background: #ff6363;
+  font-size: 18px;
+  font-family: "Satoshi-Bold";
+  cursor: pointer;
+  padding: 20px 12px;
+}
+.bottom-img {
+  height: 90px;
+}
+@keyframes move-blob {
+  from {
+    transform: translate(-40px, -30px);
+  }
+  to {
+    transform: translate(35px, 45px);
+  }
 }
