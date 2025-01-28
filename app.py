@@ -137,6 +137,7 @@ def city(city_id):
                 print(f'uploads/{filename}')
                 db.session.add(new_upload)
                 db.session.commit()
+                city = City.query.get(city_id)
                 uploads = Upload.query.filter_by(user_id=current_user.id,city_id=city.id).all()
             else:
                 flash('Invalid file type!', 'danger')
