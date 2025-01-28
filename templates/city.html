@@ -11,39 +11,37 @@
     <title>{{ current_user.username }} - {{city.name.split(",")[0]}}</title>
   </head>
   <body>
-    <div class="main">
-      <div class="top">
-        <div class="blob1"></div>
-        <div class="blob2"></div>
-        <div class="left">
-          <h2>{{city.name}}</h2>
-          <h4>{%if city.visited%} Explored {%else%} In the bucket {%endif%}</h4>
-          <p>
-            {%if city.detail %} {{city.detail}} {%else%} No details {%endif%}
-          </p>
-        </div>
-        <div
-          id="map1"
-          data-lat="{{ city.latitude }}"
-          data-lon="{{ city.longitude }}"
-          data-name="{{ city.name }}"
-        ></div>
+    <div class="top">
+      <div class="blob1"></div>
+      <div class="blob2"></div>
+      <div class="left">
+        <h2>{{city.name}}</h2>
+        <h4>{%if city.visited%} Explored {%else%} In the bucket {%endif%}</h4>
+        <p>{%if city.detail %} {{city.detail}} {%else%} No details {%endif%}</p>
       </div>
-      <div class="images">
-        <h3>Memories</h3>
-        <div class="image-list">
-          {%if uploads%} {% for upload in uploads %}
-          <div class="box">
-            <img
-              src="{{ url_for('static', filename=upload.file_path) }}"
-              alt="{{ upload.file_path.split('/')[-1] }}"
-            />
-          </div>
-          {% endfor %} {%else%}
-          <p>Add Photos</p>
+      <div
+        id="map1"
+        data-lat="{{ city.latitude }}"
+        data-lon="{{ city.longitude }}"
+        data-name="{{ city.name }}"
+      ></div>
+    </div>
+    <div class="images-box">
+      <h3>Memories</h3>
+      <div class="image-list">
+        {%if not uploads%}
+        <p>Add Photos</p>
+        {%endif%} {%if uploads%} {% for upload in uploads %}
+        <div class="box">
+          <img
+            src="{{ url_for('static', filename=upload.file_path) }}"
+            alt="{{ upload.file_path.split('/')[-1] }}"
+          />
         </div>
-        {%endif%}
+        {% endfor %} {%else%} {%endif%}
       </div>
+    </div>
+    <div class="third">
       <form class="upload" method="POST" enctype="multipart/form-data">
         <h2>Upload New Image:</h2>
         <label for="file">Choose an image:</label>
@@ -53,8 +51,11 @@
       <div class="bottom">
         <a href="{{city.id}}/delete"><button class="delete">delete</button></a>
       </div>
-      <img class="bottom-img" src="../static/Images/wave.png" alt="" />
+      <div class="bottom-img-class">
+        <img class="bottom-img" src="../static/Images/wave.png" alt="" />
+      </div>
     </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
       const mapDiv = document.getElementById("map1");
