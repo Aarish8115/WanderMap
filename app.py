@@ -114,7 +114,9 @@ def register():
 @login_required
 def home():
     cities=City.query.filter_by(user_id=current_user.id).all()
-    return render_template('home.html',cities=cities)
+    visited_countries = len(set(city.name.split(",")[-1] for city in cities if city.visited))
+    total_countries = 195
+    return render_template('home.html',cities=cities, visited_count=visited_countries, total_count=total_countries,current_user=current_user)
 
 @app.route('/<int:city_id>', methods=['GET', 'POST'])
 @login_required
@@ -135,6 +137,7 @@ def city(city_id):
                 print(f'uploads/{filename}')
                 db.session.add(new_upload)
                 db.session.commit()
+                uploads = Upload.query.filter_by(user_id=current_user.id,city_id=city.id).all()
             else:
                 flash('Invalid file type!', 'danger')
         return redirect(url_for('city', city_id=city_id, uploads=uploads,current_user=current_user))
@@ -208,3 +211,4 @@ def create_tables():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
